@@ -1,8 +1,4 @@
 <?php
-// This is a front-end replica. PHP logic is for demonstration.
-session_start();
-
-// Set a default page if not specified
 $current_page = basename($_SERVER['PHP_SELF']);
 
 // Mock user data for demonstration purposes
