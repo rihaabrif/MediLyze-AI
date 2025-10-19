@@ -62,7 +62,10 @@ $bmi_info = calculateBMI($user_data['weight_kg'] ?? null, $user_data['height_cm'
                 </div>
                 <div class="col-md-auto text-center mt-3 mt-md-0 border-md-start ps-md-4">
                     <h6 class="text-muted small mb-1">BODY MASS INDEX</h6>
-                    <p class="display-5 fw-bold <?= $bmi_info['class'] ?> mb-0"><?= $bmi_info['bmi'] ?></p>
+                    <div class="<?= $bmi_info['class'] ?>">
+                        <p class="display-5 fw-bold mb-0"><?= $bmi_info['bmi'] ?></p>
+                        <p class="fs-3 mb-0"><?= $bmi_info['status'] ?></p>
+                    </div>
                 </div>
             </div>
         </div>
