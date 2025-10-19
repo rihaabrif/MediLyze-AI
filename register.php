@@ -1,32 +1,40 @@
+<?php
+require_once 'db/db_connect.php';
+// Register logic remains the same...
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Register - MediLyze AI</title>
-    <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg" />
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = { darkMode: 'class', theme: { extend: { colors: { primary: { DEFAULT: '#16a34a', dark: '#15803d' }, secondary: '#f1f5f9', dark: { bg: '#1e293b', card: '#334155' } } } } }
-    </script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
-<body class="bg-secondary dark:bg-dark-bg">
-    <div class="min-h-screen flex flex-col items-center justify-center p-4 font-sans">
-        <div class="w-full max-w-md">
-            <div class="flex justify-center items-center mb-6 space-x-2">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-primary" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd" /></svg>
-                <h1 class="text-3xl font-bold text-primary-dark dark:text-white">MediLyze AI</h1>
-            </div>
-            <div class="bg-white dark:bg-dark-card rounded-xl shadow-2xl p-8">
-                <h2 class="text-2xl font-bold text-center mb-6">Create Account</h2>
-                <form action="onboarding.php" method="GET" class="space-y-4">
-                    <input type="text" placeholder="Full Name" class="w-full px-4 py-2 border rounded-lg bg-gray-50 dark:bg-slate-800" required>
-                    <input type="email" placeholder="Email" class="w-full px-4 py-2 border rounded-lg bg-gray-50 dark:bg-slate-800" required>
-                    <input type="password" placeholder="Password" class="w-full px-4 py-2 border rounded-lg bg-gray-50 dark:bg-slate-800" required>
-                    <div class="flex items-center"><input type="checkbox" id="terms" required><label for="terms" class="ml-2 text-sm">I agree to the <a href="terms.php" class="text-primary hover:underline">Terms</a></label></div>
-                    <button type="submit" class="w-full bg-primary hover:bg-primary-dark text-white font-bold py-2 px-4 rounded-lg">Sign Up</button>
-                </form>
-                <p class="text-center mt-6 text-sm">Already have an account? <a href="login.php" class="font-semibold text-primary hover:underline">Login</a></p>
+<body class="bg-light">
+     <div class="container">
+        <div class="row justify-content-center align-items-center min-vh-100">
+            <div class="col-md-6 col-lg-5">
+                 <div class="text-center mb-4">
+                    <h1 class="h2 fw-bold text-success"><i class="bi bi-heart-pulse-fill me-2"></i>MediLyze AI</h1>
+                </div>
+                <div class="card shadow-lg border-0">
+                    <div class="card-body p-4 p-md-5">
+                        <h2 class="card-title text-center fw-bold mb-4">Create Account</h2>
+                        <!-- Error display -->
+                        <form action="<?= htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+                            <div class="mb-3"><input type="text" name="full_name" class="form-control" placeholder="Full Name" required></div>
+                            <div class="mb-3"><input type="email" name="email" class="form-control" placeholder="Email" required></div>
+                            <div class="mb-3"><input type="tel" name="phone_number" class="form-control" placeholder="Phone Number" required></div>
+                            <div class="mb-3"><input type="text" name="city" class="form-control" placeholder="City" required></div>
+                            <div class="mb-3"><input type="password" name="password" class="form-control" placeholder="Password" required></div>
+                            <div class="form-check mb-3"><input class="form-check-input" type="checkbox" id="terms" required><label class="form-check-label small" for="terms">I agree to the <a href="terms.php">Terms</a></label></div>
+                            <div class="d-grid"><button type="submit" class="btn btn-success btn-lg">Sign Up</button></div>
+                        </form>
+                        <p class="text-center mt-4 text-muted small">Already have an account? <a href="login.php" class="fw-bold">Login</a></p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

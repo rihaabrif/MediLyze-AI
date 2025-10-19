@@ -1,57 +1,82 @@
-<?php include 'includes/header.php'; ?>
+<?php
+// The header includes the session start and login check.
+include 'includes/header.php';
+?>
 
-<div class="space-y-6">
-    <div class="bg-gradient-to-r from-primary to-green-400 text-white p-6 rounded-lg shadow-lg">
-        <h2 class="text-2xl font-bold">Hello, <?= htmlspecialchars(explode(' ', $user['name'])[0]) ?>!</h2>
-        <p class="mt-2 text-green-50">How are you feeling today? Ready to take control of your health.</p>
+<div class="container-fluid">
+    <!-- Hero Section -->
+    <div class="p-4 p-md-5 mb-4 text-white rounded hero-gradient shadow">
+        <div class="col-md-8 px-0">
+            <h1 class="display-5 fw-bold">Hello, <?= htmlspecialchars(explode(' ', $_SESSION['user_name'])[0]) ?>!</h1>
+            <p class="lead my-3">How are you feeling today? Ready to take control of your health.</p>
+        </div>
     </div>
 
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <div class="lg:col-span-2 space-y-6">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <a href="symptoms.php" class="bg-white dark:bg-dark-card p-4 rounded-lg shadow-md flex items-center space-x-4 w-full text-left hover:bg-gray-50 dark:hover:bg-slate-600">
-                    <div class="bg-primary-light text-white p-3 rounded-full"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" /></svg></div>
-                    <div>
-                        <h3 class="font-bold">Symptom Analyzer</h3>
-                        <p class="text-sm text-gray-500 dark:text-gray-400">Get an AI-powered analysis.</p>
+    <div class="row g-4">
+        <!-- Main Content Column -->
+        <div class="col-lg-8">
+            <div class="vstack gap-4">
+                <div class="row g-4">
+                    <div class="col-md-6">
+                        <a href="symptoms.php" class="card text-decoration-none shadow-sm h-100 lift">
+                            <div class="card-body d-flex align-items-center">
+                                <div class="bg-success-subtle text-success p-3 rounded-circle me-3"><i class="bi bi-clipboard2-pulse fs-3"></i></div>
+                                <div>
+                                    <h5 class="card-title fw-bold mb-1">Symptom Analyzer</h5>
+                                    <p class="card-text small text-muted">Get an AI-powered analysis.</p>
+                                </div>
+                            </div>
+                        </a>
                     </div>
-                </a>
-                <a href="services.php" class="bg-white dark:bg-dark-card p-4 rounded-lg shadow-md flex items-center space-x-4 w-full text-left hover:bg-gray-50 dark:hover:bg-slate-600">
-                    <div class="bg-primary-light text-white p-3 rounded-full"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h6m-3 3v6" /></svg></div>
-                    <div>
-                        <h3 class="font-bold">Nearby Hospitals</h3>
-                        <p class="text-sm text-gray-500 dark:text-gray-400">Find healthcare near you.</p>
+                    <div class="col-md-6">
+                        <a href="services.php" class="card text-decoration-none shadow-sm h-100 lift">
+                            <div class="card-body d-flex align-items-center">
+                                <div class="bg-success-subtle text-success p-3 rounded-circle me-3"><i class="bi bi-hospital fs-3"></i></div>
+                                <div>
+                                    <h5 class="card-title fw-bold mb-1">Nearby Hospitals</h5>
+                                    <p class="card-text small text-muted">Find healthcare near you.</p>
+                                </div>
+                            </div>
+                        </a>
                     </div>
-                </a>
-            </div>
-            <div class="bg-white dark:bg-dark-card p-4 rounded-lg shadow-md">
-                <h3 class="text-md font-bold mb-3">Recent Activity</h3>
-                <div class="space-y-3">
-                    <div class="p-3 bg-gray-50 dark:bg-slate-600 rounded-md">
-                        <p class="font-semibold truncate">"Headache, fever, runny nose"</p>
-                        <div class="flex justify-between items-center text-sm mt-1">
-                            <span class="text-gray-500">10/17/2025</span>
-                            <span class="font-semibold text-critical">Dengue Fever</span>
+                </div>
+                <div class="card shadow-sm">
+                    <div class="card-header"><h5 class="mb-0 fw-bold"><i class="bi bi-clock-history me-2"></i>Recent Activity</h5></div>
+                    <div class="list-group list-group-flush">
+                        <div class="list-group-item">
+                            <p class="fw-semibold mb-1">"Headache, fever, runny nose"</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <small class="text-muted">10/17/2025</small>
+                                <span class="fw-bold text-danger">Dengue Fever</span>
+                            </div>
                         </div>
                     </div>
-                    <a href="profile.php" class="text-sm font-semibold text-primary hover:underline">View full history</a>
+                    <div class="card-footer"><a href="profile.php" class="btn btn-link btn-sm">View full history</a></div>
                 </div>
             </div>
         </div>
-        <div class="lg:col-span-1 space-y-6">
-            <div class="bg-white dark:bg-dark-card p-4 rounded-lg shadow-md text-center">
-                <h3 class="text-md font-bold">Health Vitals</h3>
-                <p class="text-2xl font-bold text-green-500">22.5 <span class="text-sm font-semibold">Normal</span></p>
-                <p class="text-xs text-gray-500">Body Mass Index (BMI)</p>
-            </div>
-            <div class="bg-white dark:bg-dark-card p-4 rounded-lg shadow-md">
-                <h3 class="text-md font-bold mb-2">Today's Tip</h3>
-                <p class="text-sm text-gray-600 dark:text-gray-400">Stay hydrated during the hot season to prevent heatstroke.</p>
-            </div>
-            <div class="bg-white dark:bg-dark-card p-4 rounded-lg shadow-md">
-                 <h3 class="text-md font-bold mb-2">Local Health Alert</h3>
-                 <div class="flex justify-between items-center p-2 rounded-md text-sm bg-red-100 dark:bg-red-900/40">
-                    <p class="font-semibold">Dengue Fever</p><span class="text-xs">Western Province</span>
+
+        <!-- Sidebar Column -->
+        <div class="col-lg-4">
+            <div class="vstack gap-4">
+                <div class="card shadow-sm text-center">
+                    <div class="card-body">
+                        <h6 class="text-muted small mb-1">BODY MASS INDEX</h6>
+                        <p class="display-5 fw-bold text-success mb-0">22.5</p>
+                        <p class="fw-semibold text-success">Normal</p>
+                    </div>
+                </div>
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title fw-bold mb-2"><i class="bi bi-lightbulb me-2"></i>Today's Tip</h5>
+                        <p class="card-text small text-muted">Stay hydrated during the hot season to prevent heatstroke.</p>
+                    </div>
+                </div>
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title fw-bold mb-2"><i class="bi bi-exclamation-triangle me-2"></i>Local Health Alert</h5>
+                        <div class="alert alert-danger p-2 mb-0">Dengue Fever - Western Province</div>
+                    </div>
                 </div>
             </div>
         </div>

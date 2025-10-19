@@ -1,27 +1,61 @@
+<?php
+require_once 'db/db_connect.php';
+
+if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
+    header("location: login.php");
+    exit;
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $age = trim($_POST['age']);
+    $height = trim($_POST['height_cm']);
+    $weight = trim($_POST['weight_kg']);
+    $diseases = trim($_POST['existing_diseases']);
+    $allergies = trim($_POST['allergies']);
+    
+    $sql = "UPDATE users SET age = ?, height_cm = ?, weight_kg = ?, existing_diseases = ?, allergies = ? WHERE id = ?";
+    
+    if($stmt = mysqli_prepare($link, $sql)){
+        mysqli_stmt_bind_param($stmt, "iisssi", $age, $height, $weight, $diseases, $allergies, $_SESSION['id']);
+        
+        if(mysqli_stmt_execute($stmt)){
+            header("location: index.php");
+            exit;
+        } else {
+            echo "Something went wrong. Please try again later.";
+        }
+        mysqli_stmt_close($stmt);
+    }
+    mysqli_close($link);
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Onboarding - MediLyze AI</title>
-    <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg" />
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = { darkMode: 'class', theme: { extend: { colors: { primary: { DEFAULT: '#16a34a', dark: '#15803d' }, secondary: '#f1f5f9', dark: { bg: '#1e293b', card: '#334155' } } } } }
-    </script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
-<body class="bg-secondary dark:bg-dark-bg">
-    <div class="min-h-screen flex flex-col items-center justify-center p-4 font-sans">
-        <div class="w-full max-w-md">
-            <div class="bg-white dark:bg-dark-card rounded-xl shadow-2xl p-8">
-                <h2 class="text-2xl font-bold text-center mb-2">Just a few more details</h2>
-                <p class="text-center text-gray-600 mb-6 text-sm">This helps us provide a more accurate analysis.</p>
-                <form action="index.php" method="GET" class="space-y-4">
-                    <input type="number" placeholder="Age" class="w-full px-4 py-2 border rounded-lg bg-gray-50 dark:bg-slate-800" required>
-                    <input type="number" placeholder="Height (cm)" class="w-full px-4 py-2 border rounded-lg bg-gray-50 dark:bg-slate-800" required>
-                    <input type="number" placeholder="Weight (kg)" class="w-full px-4 py-2 border rounded-lg bg-gray-50 dark:bg-slate-800" required>
-                    <textarea placeholder="Existing Diseases (comma separated)" class="w-full h-20 px-4 py-2 border rounded-lg bg-gray-50 dark:bg-slate-800"></textarea>
-                    <button type="submit" class="w-full bg-primary hover:bg-primary-dark text-white font-bold py-3 px-4 rounded-lg">Complete Profile</button>
-                </form>
+<body class="bg-light">
+    <div class="container">
+        <div class="row justify-content-center align-items-center min-vh-100">
+            <div class="col-md-6 col-lg-5">
+                 <div class="card shadow-lg border-0">
+                    <div class="card-body p-4 p-md-5">
+                        <h2 class="card-title text-center fw-bold mb-2">Just a few more details</h2>
+                        <p class="text-center text-muted mb-4">This helps us provide a more accurate analysis.</p>
+                        <form action="<?= htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+                            <div class="mb-3"><input type="number" name="age" class="form-control" placeholder="Age" required></div>
+                            <div class="mb-3"><input type="number" name="height_cm" class="form-control" placeholder="Height (cm)" required></div>
+                            <div class="mb-3"><input type="number" name="weight_kg" class="form-control" placeholder="Weight (kg)" required></div>
+                            <div class="mb-3"><textarea name="existing_diseases" class="form-control" placeholder="Existing Diseases (comma separated)"></textarea></div>
+                            <div class="mb-3"><textarea name="allergies" class="form-control" placeholder="Allergies (comma separated)"></textarea></div>
+                            <div class="d-grid"><button type="submit" class="btn btn-success btn-lg">Complete Profile</button></div>
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

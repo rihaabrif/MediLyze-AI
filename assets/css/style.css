@@ -1,8 +1,123 @@
-/* Custom Styles */
-body {
-    -webkit-tap-highlight-color: transparent;
+/* Custom Styles for MediLyze AI */
+
+:root {
+    --primary-color: #18A54C;
+    --primary-color-dark: #14863D;
 }
-.dark ::-webkit-scrollbar { width: 8px; }
-.dark ::-webkit-scrollbar-track { background: #1e293b; }
-.dark ::-webkit-scrollbar-thumb { background: #475569; border-radius: 4px; }
+
+body {
+    background-color: #f8f9fa;
+    padding-bottom: 80px; /* Space for mobile nav */
+    font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+}
+
+@media (min-width: 992px) {
+    body { padding-bottom: 0; }
+}
+
+/* --- THEME CUSTOMIZATION --- */
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+a:hover {
+    color: var(--primary-color-dark);
+    text-decoration: underline;
+}
+
+.btn-success {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+.btn-success:hover {
+    background-color: var(--primary-color-dark);
+    border-color: var(--primary-color-dark);
+}
+
+.form-control:focus {
+    border-color: #18a54c80;
+    box-shadow: 0 0 0 0.25rem #18a54c40;
+}
+
+.text-success { color: var(--primary-color) !important; }
+
+/* --- NAVIGATION --- */
+.navbar-brand i { font-size: 1.5rem; }
+
+/* Desktop Nav */
+.navbar-nav .nav-link {
+    font-weight: 500;
+    color: #6c757d;
+}
+.navbar-nav .nav-link.active,
+.navbar-nav .nav-link:hover {
+    color: var(--primary-color);
+}
+.navbar-nav .nav-link.active {
+    font-weight: 700;
+}
+
+
+/* Mobile Nav */
+.fixed-bottom .nav-link {
+    color: #6c757d;
+}
+.fixed-bottom .nav-link.active {
+    color: var(--primary-color);
+}
+.fixed-bottom .nav-link small { font-size: 0.75rem; }
+
+/* --- COMPONENTS --- */
+.card { border: none; }
+.hero-gradient { background: linear-gradient(90deg, #18A54C, #20c997); }
+.lift { transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out; }
+.lift:hover { transform: translateY(-5px); box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important; }
+
+/* Circular Icons */
+.icon-circle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+.bg-success-subtle {
+    background-color: #d1e7dd !important;
+}
+
+/* SOS Button */
+#sos-button {
+    width: 60px;
+    height: 60px;
+    bottom: 90px;
+    right: 20px;
+}
+@media (min-width: 992px) {
+    #sos-button { bottom: 20px; }
+}
+
+/* Profile Picture Upload Overlay */
+.profile-picture-container {
+    position: relative;
+    cursor: pointer;
+}
+.profile-picture-container .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+    border-radius: 50%;
+}
+.profile-picture-container:hover .overlay {
+    opacity: 1;
+}
 

@@ -1,14 +1,48 @@
 <?php include 'includes/header.php'; ?>
-<div class="space-y-6">
-    <h2 class="text-2xl font-bold text-center">Settings</h2>
-    <div class="space-y-4">
-        <div class="flex items-center justify-between p-4 bg-white dark:bg-dark-card rounded-lg shadow-md">
-            <span class="font-semibold">Dark Mode</span>
-            <button id="theme-toggle-button" class="relative inline-flex items-center h-6 rounded-full w-11 bg-gray-300"><span id="theme-toggle-indicator" class="inline-block w-4 h-4 transform bg-white rounded-full translate-x-1"></span></button>
+
+<div class="container-fluid">
+    <div class="text-center mb-5">
+        <h2 class="h3 fw-bold">Settings</h2>
+        <p class="text-muted">Manage your app preferences and account details.</p>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="list-group shadow-sm">
+                <a href="profile.php" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                    <div>
+                        <i class="bi bi-person-fill me-3"></i>
+                        <span class="fw-semibold">Edit Profile</span>
+                    </div>
+                    <i class="bi bi-chevron-right"></i>
+                </a>
+                <div class="list-group-item d-flex justify-content-between align-items-center">
+                    <div>
+                        <i class="bi bi-moon-stars-fill me-3"></i>
+                        <span class="fw-semibold">Dark Mode</span>
+                    </div>
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" role="switch" id="darkModeSwitch">
+                    </div>
+                </div>
+                <a href="terms.php" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                    <div>
+                        <i class="bi bi-file-text-fill me-3"></i>
+                        <span class="fw-semibold">Terms of Service</span>
+                    </div>
+                    <i class="bi bi-chevron-right"></i>
+                </a>
+                <a href="privacy.php" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                    <div>
+                        <i class="bi bi-shield-lock-fill me-3"></i>
+                        <span class="fw-semibold">Privacy Policy</span>
+                    </div>
+                    <i class="bi bi-chevron-right"></i>
+                </a>
+            </div>
         </div>
-        <a href="terms.php" class="block p-4 bg-white dark:bg-dark-card rounded-lg shadow-md">Terms of Service</a>
-        <a href="privacy.php" class="block p-4 bg-white dark:bg-dark-card rounded-lg shadow-md">Privacy Policy</a>
     </div>
 </div>
+
 <?php include 'includes/footer.php'; ?>
 
