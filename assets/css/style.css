@@ -3,10 +3,12 @@
 :root {
     --primary-color: #18A54C;
     --primary-color-dark: #14863D;
+    --primary-color-light: #20c997;
+    --bs-body-bg: #f8f9fa;
 }
 
 body {
-    background-color: #f8f9fa;
+    background-color: var(--bs-body-bg);
     padding-bottom: 80px; /* Space for mobile nav */
     font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
 }
@@ -34,14 +36,19 @@ a:hover {
     border-color: var(--primary-color-dark);
 }
 
-.form-control:focus {
+.form-control:focus, .form-check-input:focus {
     border-color: #18a54c80;
     box-shadow: 0 0 0 0.25rem #18a54c40;
+}
+.form-check-input:checked {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
 }
 
 .text-success { color: var(--primary-color) !important; }
 
 /* --- NAVIGATION --- */
+.navbar { background-color: #fff; }
 .navbar-brand i { font-size: 1.5rem; }
 
 /* Desktop Nav */
@@ -57,8 +64,8 @@ a:hover {
     font-weight: 700;
 }
 
-
 /* Mobile Nav */
+.fixed-bottom { background-color: #fff; }
 .fixed-bottom .nav-link {
     color: #6c757d;
 }
@@ -92,6 +99,7 @@ a:hover {
     height: 60px;
     bottom: 90px;
     right: 20px;
+    color: #fff !important;
 }
 @media (min-width: 992px) {
     #sos-button { bottom: 20px; }
@@ -121,3 +129,43 @@ a:hover {
     opacity: 1;
 }
 
+/* --- DARK MODE STYLES --- */
+[data-bs-theme="dark"] {
+    --bs-body-bg: #1a1a1a !important;
+    --bs-body-color: #dee2e6;
+    --bs-tertiary-bg: #2c2c2c;
+    --bs-border-color: #444;
+}
+
+[data-bs-theme="dark"] .navbar,
+[data-bs-theme="dark"] .card,
+[data-bs-theme="dark"] .list-group-item,
+[data-bs-theme="dark"] .dropdown-menu,
+[data-bs-theme="dark"] .fixed-bottom {
+    background-color: #242424 !important;
+}
+
+[data-bs-theme="dark"] a { color: var(--primary-color-light); }
+[data-bs-theme="dark"] a:hover { color: #fff; }
+
+[data-bs-theme="dark"] .text-success { color: var(--primary-color-light) !important; }
+[data-bs-theme="dark"] .text-muted { color: #888 !important; }
+
+[data-bs-theme="dark"] .navbar-nav .nav-link,
+[data-bs-theme="dark"] .fixed-bottom .nav-link {
+    color: #aaa;
+}
+[data-bs-theme="dark"] .navbar-nav .nav-link.active,
+[data-bs-theme="dark"] .navbar-nav .nav-link:hover,
+[data-bs-theme="dark"] .fixed-bottom .nav-link.active {
+    color: var(--primary-color-light);
+}
+
+[data-bs-theme="dark"] .bg-success-subtle {
+     background-color: rgba(32, 201, 151, 0.15) !important;
+     color: var(--primary-color-light) !important;
+}
+
+[data-bs-theme="dark"] .dropdown-item:hover {
+    background-color: var(--bs-tertiary-bg);
+}

@@ -25,22 +25,17 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Trigger file input when the picture container is clicked
     if (profilePicContainer) {
         profilePicContainer.addEventListener('click', () => {
             profilePicInput.click();
         });
     }
 
-    // Handle the file upload when a new file is selected
     if (profilePicInput) {
         profilePicInput.addEventListener('change', function() {
             if (this.files && this.files[0]) {
                 const formData = new FormData();
                 formData.append('profile_picture', this.files[0]);
-
-                // Show a loading indicator if you have one
-                // e.g., document.getElementById('loader').style.display = 'block';
 
                 fetch('db/upload_picture.php', {
                     method: 'POST',
@@ -49,11 +44,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 .then(response => response.json())
                 .then(data => {
                     if (data.success) {
-                        // Update the profile picture on the page instantly
-                        const newImagePath = data.filePath + '?t=' + new Date().getTime(); // Cache buster
+                        const newImagePath = data.filePath + '?t=' + new Date().getTime();
                         document.getElementById('profile-picture-img').src = newImagePath;
-                        
-                        // Also update the header image if it exists
                         const headerImg = document.querySelector('header .dropdown-toggle img');
                         if(headerImg) {
                             headerImg.src = newImagePath;
@@ -65,10 +57,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 .catch(error => {
                     console.error('Upload failed:', error);
                     alert('An unexpected error occurred during upload.');
-                })
-                .finally(() => {
-                    // Hide loading indicator
-                    // e.g., document.getElementById('loader').style.display = 'none';
                 });
             }
         });
@@ -98,6 +86,23 @@ document.addEventListener('DOMContentLoaded', function() {
                 button.disabled = false;
                 window.scrollTo({ top: resultsSection.offsetTop, behavior: 'smooth' });
             }, 2000);
+        });
+    }
+
+    // --- Settings Page: Theme Toggle ---
+    const themeSwitch = document.getElementById('theme-switch');
+    if (themeSwitch) {
+        themeSwitch.addEventListener('change', function() {
+            fetch('db/toggle_theme.php', {
+                method: 'POST'
+            })
+            .then(response => response.json())
+            .then(data => {
+                if(data.success) {
+                    document.body.setAttribute('data-bs-theme', data.newTheme);
+                }
+            })
+            .catch(error => console.error('Failed to toggle theme:', error));
         });
     }
 });

@@ -10,6 +10,11 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
         header("location: login.php");
         exit;
     }
+} else {
+    // Set default theme if not set
+    if (!isset($_SESSION['theme'])) {
+        $_SESSION['theme'] = 'light';
+    }
 }
 
 // --- Navigation Items ---
@@ -32,11 +37,11 @@ $nav_items = [
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
-<body class="bg-light">
+<body data-bs-theme="<?= htmlspecialchars($_SESSION['theme'] ?? 'light') ?>">
 
     <?php if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true): ?>
     <!-- Top Navigation Bar -->
-    <header class="navbar navbar-expand-lg navbar-light bg-white fixed-top shadow-sm">
+    <header class="navbar navbar-expand-lg fixed-top shadow-sm">
         <div class="container-fluid">
             <a class="navbar-brand fw-bold text-success" href="index.php">
                 <i class="bi bi-heart-pulse-fill me-2"></i>MediLyze AI
@@ -55,14 +60,14 @@ $nav_items = [
             
             <div class="d-flex align-items-center">
                 <div class="dropdown">
-                    <button class="btn btn-light rounded-circle position-relative" type="button" data-bs-toggle="dropdown">
+                    <button class="btn rounded-circle position-relative" type="button" data-bs-toggle="dropdown">
                         <i class="bi bi-bell-fill fs-5"></i>
                     </button>
                     <!-- Notification dropdown content here -->
                 </div>
                 <div class="dropdown">
                     <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle ms-3" data-bs-toggle="dropdown">
-                        <img src="<?= htmlspecialchars($_SESSION['user_picture'] ?? 'assets/images/default_avatar.png') ?>" alt="User" width="40" height="40" class="rounded-circle">
+                        <img src="<?= htmlspecialchars($_SESSION['user_picture'] ?? 'assets/images/default_avatar.png') ?>" alt="User" width="40" height="40" class="rounded-circle" style="object-fit:cover;">
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end text-small shadow">
                         <li><a class="dropdown-item" href="profile.php"><i class="bi bi-person-circle me-2"></i>Profile</a></li>
