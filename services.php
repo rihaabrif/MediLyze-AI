@@ -55,10 +55,10 @@
                  <div class="card-header"><h5 class="mb-0 fw-bold"><i class="bi bi-telephone-fill me-2"></i>Emergency Numbers</h5></div>
                  <div class="card-body">
                      <div class="row text-center g-3">
-                         <div class="col-6 col-md-3"><a href="tel:1990" class="btn btn-outline-danger w-100 p-3"><i class="bi bi-ambulance fs-4 d-block mb-1"></i>Ambulance<br><strong>1990</strong></a></div>
-                         <div class="col-6 col-md-3"><a href="tel:119" class="btn btn-outline-primary w-100 p-3"><i class="bi bi-shield-fill-exclamation fs-4 d-block mb-1"></i>Police<br><strong>119</strong></a></div>
-                         <div class="col-6 col-md-3"><a href="tel:110" class="btn btn-outline-warning w-100 p-3"><i class="bi bi-fire fs-4 d-block mb-1"></i>Fire<br><strong>110</strong></a></div>
-                         <div class="col-6 col-md-3"><a href="tel:1929" class="btn btn-outline-info w-100 p-3"><i class="bi bi-shield-check fs-4 d-block mb-1"></i>Child Helpline<br><strong>1929</strong></a></div>
+                         <div class="col-6 col-md-3"><a href="tel:1990" class="btn btn-outline-success w-100 p-3"><i class="bi bi-car-front-fill fs-4 d-block mb-1"></i>Ambulance<br><strong>1990</strong></a></div>
+                         <div class="col-6 col-md-3"><a href="tel:119" class="btn btn-outline-success w-100 p-3"><i class="bi bi-shield-fill-exclamation fs-4 d-block mb-1"></i>Police<br><strong>119</strong></a></div>
+                         <div class="col-6 col-md-3"><a href="tel:110" class="btn btn-outline-success w-100 p-3"><i class="bi bi-fire fs-4 d-block mb-1"></i>Fire<br><strong>110</strong></a></div>
+                         <div class="col-6 col-md-3"><a href="tel:1929" class="btn btn-outline-success w-100 p-3"><i class="bi bi-shield-fill-check fs-4 d-block mb-1"></i>Child Helpline<br><strong>1929</strong></a></div>
                      </div>
                  </div>
             </div>

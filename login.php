@@ -11,7 +11,6 @@ $email = $password = "";
 $email_err = $password_err = $login_err = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Basic validation
     if (empty(trim($_POST["email"]))) {
         $email_err = "Please enter email.";
     } else {
@@ -24,7 +23,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $password = trim($_POST["password"]);
     }
 
-    // Proceed if no validation errors
     if (empty($email_err) && empty($password_err)) {
         $sql = "SELECT id, full_name, email, password, profile_picture_path FROM users WHERE email = ?";
 
@@ -39,16 +37,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     mysqli_stmt_bind_result($stmt, $id, $full_name, $email, $hashed_password, $pfp_path);
                     if (mysqli_stmt_fetch($stmt)) {
                         if (password_verify($password, $hashed_password)) {
-                            // Password is correct, start a new session
                             session_start();
-                            
-                            // Store data in session variables
                             $_SESSION["loggedin"] = true;
                             $_SESSION["id"] = $id;
                             $_SESSION["user_name"] = $full_name;
-                            $_SESSION["user_picture"] = $pfp_path; // Set the profile picture path
-
-                            // Redirect user to home page
+                            $_SESSION["user_picture"] = $pfp_path;
+                            $_SESSION["theme"] = 'light'; // Default theme on login
                             header("location: index.php");
                         } else {
                             $login_err = "Invalid email or password.";
@@ -74,9 +68,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <title>Login - MediLyze AI</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
-<body class="bg-light">
+<body data-bs-theme="light">
     <div class="container">
         <div class="row justify-content-center align-items-center min-vh-100">
             <div class="col-md-6 col-lg-4">
@@ -92,13 +89,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         }        
                         ?>
                         <form action="<?= htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-                            <div class="mb-3">
-                                <label for="email" class="form-label">Email</label>
-                                <input type="email" name="email" id="email" class="form-control" required value="<?= $email; ?>">
+                            <div class="form-floating mb-3">
+                                <input type="email" name="email" id="email" class="form-control" required value="<?= $email; ?>" placeholder="name@example.com">
+                                <label for="email">Email address</label>
                             </div>
-                            <div class="mb-3">
-                                <label for="password" class="form-label">Password</label>
-                                <input type="password" name="password" id="password" class="form-control" required>
+                            <div class="form-floating mb-3">
+                                <input type="password" name="password" id="password" class="form-control" required placeholder="Password">
+                                <label for="password">Password</label>
                             </div>
                             <div class="d-grid">
                                 <button type="submit" class="btn btn-success btn-lg">Login</button>

@@ -2,7 +2,7 @@
 
 <div class="container-fluid">
     <div class="mb-4">
-        <a href="settings.php" class="text-decoration-none text-success fw-semibold">
+        <a href="#" class="text-decoration-none text-success fw-semibold" onclick="history.back();">
             <i class="bi bi-arrow-left me-2"></i>Back to Settings
         </a>
     </div>
