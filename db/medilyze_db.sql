@@ -7,6 +7,9 @@
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
+CREATE SCHEMA IF NOT EXISTS `medilyze_db` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;;
+USE `medilyze_db`;
+
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
